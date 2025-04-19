@@ -1,9 +1,9 @@
 
 const express = require('express') 
 const app = express() 
-
+const morgan = require('morgan')
 app.use(express.json())
-
+app.use(morgan('tiny'))
 let persons = [
     {
         "id":"1",
@@ -43,7 +43,8 @@ app.get('/api/persons', (request, response) => {
 app.get('/info', (request, response) => {
     const info = 
     `<div><div>Phonebook has info for ${persons.length} people</div><div>${new Date()}</div></div>`;
-    response.send(info)
+    response.send(info) 
+    //we use .send method for passign HTML/plain text/files, anything that is not JSON
 })
 
 app.get('/api/persons/:id', (request, response) => {
@@ -88,9 +89,17 @@ app.post('/api/persons', (request, response) => {
     }
 
     persons = persons.concat(person) 
-    response.json(person)
+    response.status(201).json(person) // 201 = created
 
 })
+
+const unknownEndpoint = (request, response) => {
+    response.status(404).json({
+        error: 'unknown endpoint'
+    })
+}
+
+app.use(unknownEndpoint)
 
 const PORT = 3001 
 app.listen(PORT, ()=> {

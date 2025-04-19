@@ -8,7 +8,8 @@ GET http://localhost:3001/api/persons/6
 
 ###
 # Delete a single person 
-DELETE http://localhost:3001/api/persons/4
+DELETE http://localhost:3001/api/persons/2
+
 ###
 # Add a single person 
 POST http://localhost:3001/api/persons 
