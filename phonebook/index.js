@@ -14,14 +14,14 @@ let persons = [
         "number":"39.44.5323523"
     },
     {
-        "id":"1",
-        "name":"Arto Hellas", 
-        "number":"040-123456"
+        "id":"3",
+        "name":"Jake Martin", 
+        "number":"11-22-35242"
     },
     {
-        "id":"1",
-        "name":"Arto Hellas", 
-        "number":"040-123456"
+        "id":"4",
+        "name":"Sandy Antonio", 
+        "number":"76-34334-23"
     },
 ]
 
@@ -48,6 +48,12 @@ app.get('/api/persons/:id', (request, response) => {
     } else {
         response.status(404).end()
     }
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+    const id = request.params.id 
+    persons = persons.filter(person => person.id !== id)
+    response.status(204).end()
 })
 
 const PORT = 3001 

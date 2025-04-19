@@ -1,4 +1,11 @@
+#Get all persons 
+GET http://localhost:3001/api/persons
+###
 # Get a single person
 GET http://localhost:3001/api/persons/1
 ###
 GET http://localhost:3001/api/persons/6
+
+###
+# Delete a single person 
+DELETE http://localhost:3001/api/persons/4
