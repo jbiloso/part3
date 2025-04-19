@@ -21,7 +21,7 @@ let persons = [
         "number":"11-22-35242"
     },
     {
-        "id":"4",
+        "id":"5",
         "name":"Sandy Antonio", 
         "number":"76-34334-23"
     },
@@ -29,7 +29,7 @@ let persons = [
 
 const generateId= () => {
     const id = Math.floor(Math.random() * 1000000)
-    return id
+    return id.toString() //convert to strings because ids are strings
 } 
 
 app.get('/', (request, response) => {
@@ -66,11 +66,20 @@ app.delete('/api/persons/:id', (request, response) => {
 app.post('/api/persons', (request, response) => {
     const body = request.body 
 
+
+    // check if there is no name or number 
     if(!body.name || !body.number) {
         return response.status(400).json({
-            error: 'name missing'
+            error: 'name and number cannot be blank'
         })
     } 
+
+    // check if the name is a duplicate in phonebook
+    if(persons.some(person => person.name === body.name)){
+        return response.status(400).json({
+            error: `contact name '${body.name}' already exists`
+        })
+    }
 
     const person = {
         id: generateId(),
