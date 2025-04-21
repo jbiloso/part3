@@ -3,6 +3,10 @@ const app = express()
 const cors = require('cors')
 
 app.use(cors())
+//built in express.static middleware to serve frontend static files 
+// like index.html, css, js from your backend Express server 
+app.use(express.static('dist')) 
+
 
 //activate the json-parser 
 //the json-parser takes the json data of a request
