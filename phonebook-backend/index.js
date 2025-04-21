@@ -3,9 +3,18 @@ const express = require('express')
 const app = express() 
 const morgan = require('morgan')
 app.use(express.json())
-const cors = require('cors')  //node's middleware that allows requests from other origins (different port)
+
+//allows the backend to receive requests from 
+// different origin
+const cors = require('cors')
 
 app.use(cors())
+
+//built-in middleware from express called static 
+// which allows Express to show static content like index.html and the javascript
+app.use(express.static('dist')) 
+
+
 
 morgan.token('details',  (req)=> {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
