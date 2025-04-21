@@ -3,6 +3,9 @@ const express = require('express')
 const app = express() 
 const morgan = require('morgan')
 app.use(express.json())
+const cors = require('cors')  //node's middleware that allows requests from other origins (different port)
+
+app.use(cors())
 
 morgan.token('details',  (req)=> {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
