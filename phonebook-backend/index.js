@@ -99,23 +99,24 @@ app.post('/api/persons', (request, response) => {
             error: 'name and number cannot be blank'
         })
     } 
-
+    // we will disable the checking for duplicate function for now
     // check if the name is a duplicate in phonebook
-    if(persons.some(person => person.name === body.name)){
-        return response.status(400).json({
-            error: `contact name '${body.name}' already exists`
-        })
-    }
+    // if(persons.some(person => person.name === body.name)){
+    //     return response.status(400).json({
+    //         error: `contact name '${body.name}' already exists`
+    //     })
+    // }
 
-    const person = {
-        id: generateId(),
+    // create a new model object 
+    const person = new Person({
         name: body.name, 
         number: body.number
-    }
+    })
 
-    persons = persons.concat(person) 
-    response.status(201).json(person) // 201 = created
-
+    // saving that object to mongodb
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 
 const unknownEndpoint = (request, response) => {
