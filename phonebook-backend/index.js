@@ -26,34 +26,6 @@ morgan.token('details',  (req)=> {
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :details'))
 
 
-let persons = [
-    {
-        "id":"1",
-        "name":"Arto Hellas", 
-        "number":"040-123456"
-    },
-    {
-        "id":"2",
-        "name":"Ada Lovelace", 
-        "number":"39.44.5323523"
-    },
-    {
-        "id":"3",
-        "name":"Jake Martin", 
-        "number":"11-22-35242"
-    },
-    {
-        "id":"5",
-        "name":"Sandy Antonio", 
-        "number":"76-34334-23"
-    },
-]
-
-const generateId= () => {
-    const id = Math.floor(Math.random() * 1000000)
-    return id.toString() //convert to strings because ids are strings
-} 
-
 app.get('/', (request, response) => {
     response.send('<h1>Hello worlddd!</h1>')
 })
