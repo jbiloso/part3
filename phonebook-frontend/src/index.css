@@ -1,0 +1,19 @@
+
+.notif-div{
+    background-color: rgb(198, 193, 193);
+    border-radius: 8px;
+}
+.notif-div .add, .update {
+    color: green;
+    text-align: center;
+    padding: 5px;
+
+}
+.notif-div .delete {
+    color: red;
+    text-align: center;
+    padding: 5px;
+}
+h2 {
+    color: blue
+}
