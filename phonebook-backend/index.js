@@ -65,10 +65,15 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-app.get('/info', (request, response) => {
-    const info = 
-    `<div><div>Phonebook has info for ${persons.length} people</div><div>${new Date()}</div></div>`;
-    response.send(info) 
+app.get('/info', (request, response) => { 
+    let info = "";
+
+    Person.countDocuments({})
+        .then( count => {
+            // response.json(count)
+            info = `<div><div>Phonebook has info for ${count} people</div><div>${new Date()}</div></div>`
+            response.send(info) 
+        })
     //we use .send method for passign HTML/plain text/files, anything that is not JSON
 })
 
