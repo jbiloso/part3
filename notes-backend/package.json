@@ -6,14 +6,16 @@
     "start": "node index.js",
     "dev": "node --watch index.js",
     "test": "echo \"Error: not test specified\" && exit 1",
-    "build:ui": "rm -rf dist && cd ../part2-notes-frontend && npm run build && cp -r dist ../notes-backend", 
-    "deploy:full":"npm run build:ui && git add . && git commit -m uibuild && git push origin main"
+    "build:ui": "rm -rf dist && cd ../part2-notes-frontend && npm run build && cp -r dist ../notes-backend",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push origin main"
   },
   "author": "Matti Luukkainen",
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0"
   }
 }
