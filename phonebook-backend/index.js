@@ -108,6 +108,9 @@ app.post('/api/persons', (request, response) => {
     person.save().then(savedPerson => {
         response.json(savedPerson)
     })
+    .catch(error => {
+        console.log(error.message)
+    })
 })
 
 // for updating the number of an existing person 
