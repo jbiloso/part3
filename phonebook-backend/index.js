@@ -133,6 +133,28 @@ app.post('/api/persons', (request, response) => {
     })
 })
 
+// for updating the number of an existing person 
+app.put('/api/persons/:id', (request, response, next) => {
+    const { number } = request.body 
+
+    // a Mongoose model has a method findById to query a MongoDB collection
+    Person.findById(request.params.id)
+        .then(person => {
+            if (!person) {
+                return response.status(404).end()
+            }
+
+            person.number = number 
+
+            // save() is used on a Mongoose document instance to save it to the database 
+            return person.save().then((updatedPerson) => {
+                response.json(updatedPerson)
+            })
+        })
+        .catch(error => next(error))
+    
+})
+
 
 const unknownEndpoint = (request, response) => {
     response.status(404).json({
