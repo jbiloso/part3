@@ -110,6 +110,7 @@ app.post('/api/persons', (request, response) => {
     })
     .catch(error => {
         console.log(error.message)
+        response.status(400).json({error: error.message})
     })
 })
 
