@@ -44,9 +44,11 @@ const FormAdd = ({ persons , setPersons , visiblePersons, setVisiblePersons, sea
                 // console.log('updated visible persons: ', visiblePersons)
                 // alert(`Updated ${person.name}'s number successfully!`)
                 setNotif(['update',`Updated ${person.name}'s number`])
-
-
               })
+              .catch(error => {
+                console.log(error.response.data.error)
+                setNotif(['delete', 'Number validation failed! '])
+              }) 
 
                 // Remove the deleted person locally
 
@@ -65,6 +67,7 @@ const FormAdd = ({ persons , setPersons , visiblePersons, setVisiblePersons, sea
           })
           .catch(error => {
             console.log(error.response.data.error)
+            setNotif(['delete', 'Name or number validation failed! '])
           }) 
         }
         setNewName('')

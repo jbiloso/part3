@@ -132,8 +132,10 @@ app.put('/api/persons/:id', (request, response, next) => {
                 response.json(updatedPerson)
             })
         })
-        .catch(error => next(error))
-    
+        .catch(error => {
+            console.log(error.message)
+            response.status(400).json({error: error.message})
+        })    
 })
 
 
